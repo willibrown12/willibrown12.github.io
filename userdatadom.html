@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+      </style>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="mycss.css">
+    <title>crypto coins</title>
+</head>
+<body style=" background-color: rgb(45, 42, 53);" >
+    <div class=" sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary-dark bg-dark" style="font-family:Pixelify Sans, sans-serif; "  data-bs-theme="dark">
+        <div class="container-fluid">
+            <img src="./jason-mask-svgrepo-com (2).svg" style="height: 50px;" alt="">
+            <span class="navbar-brand" href="#">Cryptomaniac</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="home" >Home</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link"  id="liveReport">live report</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="about">about</button>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+        
+    </nav>
+    <div class="progress"  id="progressbar" style="visibility: collapse; transition: 1s; height: 0.5rem;">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressbarkid"></div>
+      </div>
+</div>
+
+   
+    
+    <div class="container">
+        <div id="aboutdiv" >
+       <div class="textbox">
+        <div class="mb-2">  Hi, my name is Willi Brown from Herzliya, Israel. I am 25 years old and a student learning to be a full-stack developer. This project is part of my homework.</div>
+        <div>I created a website for cryptocurrency that lists over 14,000 coins, allowing users to find their market value. If you struggle to find a specific coin, you can use the search function. The list shows the current market value of each coin in three different currencies: Euro, Dollar, and Shekel. If you add coins to your favorites via a toggle button, you can see a live report graph on a different page, updated every 10 seconds from an API. The project uses Chart.js for the live reports and Bootstrap for a responsive and user-friendly design that works with all types of devices, including tablets, smartphones, and PCs. The website is a single-page application, utilizing vanilla JavaScript for navigation and integrating various APIs to provide information about the cryptocurrencies.</div>
+        
+       </div>
+        </div>
+        <div id="liveReportdiv">
+          <div class="textbox">
+            <div>This is a live report graph for your favorite coins. The graph will be updated every 10 seconds with the current price of the coin in dollars. If you had five favorites selected but see fewer coins here, it means the API couldn't find some of the coins. When you leave this page, all data in the graph will be deleted, so make sure to review everything before navigating to a different page.</div>
+            
+           </div>
+            <canvas id="myChart" width="80%"></canvas>
+        </div>
+        <div  id="homepage" >
+          <div class="textbox">
+            <div style="font-weight: bold;">Welcome to the Homepage! </div>
+            <div>Here you can see all the cryptocurrencies. If you click on the "Favorite" toggle for any coin, it will be added to your favorites list. To view all your favorite coins, click on the "Favorites" button.
+              To exit the favorites view, simply use the search button with an empty input field.
+              The "More Info" button will display the current price of the selected coin. </div>
+            <div class="mt-1">Important: You can have a maximum of 5 favorites. If you try to add a 6th coin, a popup window will appear showing all your favorite coins. You won’t be able to close this popup unless you either cancel the toggle or reduce your favorites to only 5 coins. </div>
+           </div>
+            <div class="d-flex justify-content-center align-items-center" >
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="Search" style="width: 50%;">
+                <div class="form-check">
+                   <input class="form-check-input " id="checkbox" type="checkbox"  data-bs-toggle="popover" title="search by id" data-bs-trigger="hover focus" data-bs-content="With this option, you will only find the exact coin you are looking for and not other coins that may include what you searched for.">
+                </div>
+                <button class="btn btn-outline-success m-1"  id="buttonSrch">Search</button>
+                <button class="btn btn-outline-warning m-1"  id="showfavorites">show favorites</button>
+                
+              </div>
+            
+              <div class="text-center mt-4" id="spinner">
+                <div class="spinner-border text-success" role="status">
+                  
+                </div>
+              </div>
+          
+        <div id="coinList" class="row  mt-4">
+        </div>
+    </div>
+       
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-backdrop="static" style="color: white;">
+        <div class="offcanvas-header">
+          <p class="offcanvas-title" id="offcanvasExampleLabel">Please note: You can select up to five favorites. If you wish to add a new coin, please uncheck one or more favorites and then click "Continue". selecting "Cancel" will not add the new coin to your favorites.  </p>
+          
+        </div>
+        <div class="offcanvas-body">
+          <div id="offcanvasfavorites">
+           
+          </div>
+         
+          <button class="btn btn-outline-success m-1"  id="buttonadd">accept</button>
+          <button class="btn btn-outline-warning m-1"  id="buttoncancel">cancel</button>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dataPractice.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="dom.js"></script>
+    <script>
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+      </script>
+</body>
+</html>
